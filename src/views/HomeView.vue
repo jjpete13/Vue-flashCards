@@ -1,51 +1,88 @@
 <script setup lang="ts">
-import ArrowButton from '@/components/ArrowButton.vue';
-import FlashCard from '@/components/FlashCard.vue';
-import questions from '../assets/questions.json';
-import { useTransformContent } from '@/hooks/useTransformContent';
-import { ref } from 'vue';
+import { useStudyContentStore } from "@/stores/studyContent";
+import { ref } from "vue";
+import { RouterLink } from "vue-router";
+import data from "../assets/questions.json";
+import type { Question } from "./CardView.vue";
 
-interface Question {
-  question: string;
-  answer: string;
-}
+type DefaultInput = { [key: string]: Question[] };
+const store = useStudyContentStore();
+const defaultQuestions: DefaultInput = data;
+const options = () => {
+	const defaults: { [key: string]: boolean } = {};
+	const qArray = Object.keys(defaultQuestions);
+	qArray.forEach((item) => (defaults[item] = false));
+	return defaults;
+};
+const selected = ref<{ [key: string]: boolean }>(options());
+const selectAll = (select: boolean) => {
+	const qArray = Object.keys(selected.value);
+	if (!select) return qArray.forEach((item) => (selected.value[item] = false));
+	return qArray.forEach((item) => (selected.value[item] = true));
+};
 
-
-let index = 0;
-const content: Question[] = useTransformContent(questions);
-const passedContent = ref(content[index])
-const isQuestion = ref(true)
-const handleArrowClick = (up: boolean) => {
-if (up) {
-  index = index === content.length - 1 ? 0 : index + 1;
-} else {
-  index = index === 0 ? content.length - 1 : index - 1;
-}
- passedContent.value = content[index]
-}
-const handleFlip = () => {
-  isQuestion.value = !isQuestion.value
-
-  console.log(isQuestion.value)
-}
-
-
+const onSubmit = () => {
+	const array: Question[] = [];
+	for (const [key, value] of Object.entries(selected.value)) {
+		const category: Question[] = defaultQuestions[key];
+		if (value) array.push(...category);
+	}
+	store.setQuestions(array);
+};
 </script>
 
 <template>
-  <main class="card-group">
-    <ArrowButton direction="prev" @click="handleArrowClick(false)" />
-    <FlashCard v-if="isQuestion" @flip="handleFlip">{{ passedContent.question }}</FlashCard>
-    <FlashCard v-if="!isQuestion" @flip="handleFlip">{{ passedContent.answer }}</FlashCard>
-    <ArrowButton direction="next" @click="handleArrowClick(true)" />
-  </main>
+  <div class="question-container">
+    <h3>Select Categories</h3>
+    <button id="select-all" v-if="Object.values(selected).includes(false)" @click="selectAll(true)" >Select All</button>
+    <button id="select-all" v-else @click="selectAll(false)" >Deselect All</button>
+    <span v-for="key in Object.keys(defaultQuestions)" :key="key">
+      <input type="checkbox" v-model="selected[key]" :key="key" :value="key" :checked="selected[key]" @click="selected[key] = !selected[key]"/>
+      {{ key }}
+    </span>
+    
+  </div>
+  <div class="button-container">
+    <RouterLink class="button" v-if="Object.values(selected).filter(item => item === true).length > 0" @click="onSubmit"  to="/card">Start</RouterLink>
+  </div>
 </template>
 
 <style scoped>
-.card-group {
-  display: inline-flex;
-  place-items: center;
+.question-container {
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
-
+#select-all {
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  background-color: #dad8d8;
+  transition: background-color 0.3s ease;
+}
+#select-all:hover {
+  background-color: #b3b1b1;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+ height: 50px;
+}
+.button {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+ }
 </style>

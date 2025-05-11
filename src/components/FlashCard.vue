@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import ArrowRepeat from './icons/ArrowRepeat.vue';
-const emit = defineEmits(['flip'])
-
+import ArrowRepeat from "./icons/ArrowRepeat.vue";
+const emit = defineEmits(["flip"]);
 </script>
 
 
@@ -10,14 +9,15 @@ const emit = defineEmits(['flip'])
     <div class="content">
       <h1><slot></slot></h1>
     </div>
-    <button class="flip" @click="emit('flip')">
+    <button class="flip"  @mousedown="emit('flip')">
       <ArrowRepeat />
     </button>
   </div>
 </template>
 
 <style scoped>
-  @keyframes flip {
+
+@keyframes flip {
     0% {
       transform: scaleY(1);
     }
@@ -28,7 +28,7 @@ const emit = defineEmits(['flip'])
       transform: scaleY(1);
     }
   }
-
+  
   @keyframes fade {
     0% {
       opacity: 0;
@@ -51,12 +51,12 @@ const emit = defineEmits(['flip'])
     color: #000;
     position: relative;
   }
-  /* .card:has(.flip:focus) {
+  .card:has(.flip:focus) {
       animation: flip 0.75s;
       .content {
         animation: fade 0.75s;
       }
-  } */
+  }
 
   .content {
     width: 100%;

@@ -1,0 +1,12 @@
+{
+	"linter": {
+		"rules": {
+			"suspicious": {
+				"noAssignInExpressions": "warn"
+			},
+			"complexity": {
+				"noForEach": "warn"
+			}
+		}
+	}
+}

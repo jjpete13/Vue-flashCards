@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <!-- <RouterLink to="/about">About</RouterLink> -->
       </nav>
   </header>
-  <main class="container">
+  <main>
     <RouterView />
   </main>
 </template>
@@ -45,15 +45,6 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /* @media (min-width: 1024px) {
