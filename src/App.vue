@@ -47,10 +47,5 @@ nav a:first-of-type {
   border: 0;
 }
 
-/* @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-  }
-} */
+
 </style>

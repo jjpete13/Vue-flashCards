@@ -9,7 +9,7 @@ const emit = defineEmits(["flip"]);
     <div class="content">
       <h1><slot></slot></h1>
     </div>
-    <button class="flip"  @mousedown="emit('flip')">
+    <button class="flip" id="flip-button" @mousedown="emit('flip')">
       <ArrowRepeat />
     </button>
   </div>
@@ -42,7 +42,13 @@ const emit = defineEmits(["flip"]);
   }
 
   .card {
-    width: 600px;
+    @media (max-width: 600px) {
+      width: calc(100vw - 2rem);
+    }
+    @media (min-width: 600px) {
+      width: 600px;
+    }
+
     min-height: 300px;
     height: fit-content;
     border-radius: 10px;
