@@ -43,7 +43,7 @@ const emit = defineEmits(["flip"]);
 
   .card {
     @media (max-width: 600px) {
-      width: calc(100vw - 2rem);
+      width: 90vw;
     }
     @media (min-width: 600px) {
       width: 600px;

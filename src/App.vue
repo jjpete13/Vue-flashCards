@@ -25,7 +25,7 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -41,6 +41,7 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  border-radius: 5px;
 }
 
 nav a:first-of-type {
