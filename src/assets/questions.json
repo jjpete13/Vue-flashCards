@@ -61,7 +61,7 @@
 			"answer": "The virtual keyword is used to mark a method as overridable. The override keyword is used to provide a different implementation of a method that is already provided by a superclass. The new keyword is used to hide a method of a superclass."
 		}
 	],
-	"constructorsDestructors": [
+	"ConstructorsAndDestructors": [
 		{
 			"question": "What is a constructor in C#?",
 			"answer": "A constructor is a special type of method that is used to initialize an object when it is created."
@@ -115,7 +115,7 @@
 			"answer": "C# does not support destructors like C++ because it uses the garbage collector to manage memory. The garbage collector is responsible for cleaning up resources when an object is no longer needed, so there is no need for destructors."
 		}
 	],
-	"accessModifiers": [
+	"AccessModifiers": [
 		{
 			"question": "What are access modifiers in C#?",
 			"answer": "Access modifiers are keywords that are used to specify the accessibility of a class or its members."
@@ -157,7 +157,7 @@
 			"answer": "Private is used for data members in OOP to encapsulate the data and to prevent it from being modified accidentally."
 		}
 	],
-	"classes": [
+	"Classes": [
 		{
 			"question": "What is an abstract class in C#?",
 			"answer": "An abstract class is a class that cannot be instantiated and is used as a base class for other classes."
@@ -243,7 +243,7 @@
 			"answer": "Yes, a partial class can have a constructor."
 		}
 	],
-	"properties": [
+	"Properties": [
 		{
 			"question": "What are properties in C#?",
 			"answer": "Properties are a way to expose data in a class."
@@ -285,7 +285,7 @@
 			"answer": "Backing fields are fields that are used to store the data for a property."
 		}
 	],
-	"delegatesAndEvents": [
+	"DelegatesAndEvents": [
 		{
 			"question": "What is a delegate in C#?",
 			"answer": "A delegate is a type that represents a reference to a method with a specific signature."
@@ -409,7 +409,7 @@
 			"answer": "While interfaces are commonly used in DIP, it can be applied without them by using abstract classes or other forms of abstraction."
 		}
 	],
-	"javascript": [
+	"Javascript": [
 		{
 			"question": "What is the difference between 'Pass by Value' and 'Pass by Reference'?",
 			"answer": "pass by value creates a copy of the original value and any modification of this copy inside a function will not affect the original, pass by reference passes a reference to the original value and any modifications inside a function are made to the original"
@@ -543,10 +543,6 @@
 			"answer": "dynamically typed"
 		},
 		{
-			"question": "What is the difference between Indexeddb and sessionstorage?",
-			"answer": "IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs. SessionStorage is a web storage object for storing data only for the duration of the page session."
-		},
-		{
 			"question": "What are Interceptors?",
 			"answer": "Interceptors are mechanisms in frameworks like Axios or Angular that allow you to modify requests or responses before they are handled."
 		},
@@ -555,7 +551,7 @@
 			"answer": "Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope."
 		},
 		{
-			"question": "What are the differences let and const?",
+			"question": "What is the difference between let and const?",
 			"answer": "let is block-scoped and cannot be redeclared; const is block-scoped and cannot be reassigned."
 		},
 		{

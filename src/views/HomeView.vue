@@ -8,6 +8,13 @@ import type { Question } from "./CardView.vue";
 type DefaultInput = { [key: string]: Question[] };
 const store = useStudyContentStore();
 const defaultQuestions: DefaultInput = data;
+
+function splitCamelCase(text: string) {
+	return text
+		.replace(/([a-z])([A-Z])/g, "$1 $2")
+		.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 const options = () => {
 	const defaults: { [key: string]: boolean } = {};
 	const qArray = Object.keys(defaultQuestions);
@@ -38,7 +45,7 @@ const onSubmit = () => {
     <button id="select-all" v-else @click="selectAll(false)" >Deselect All</button>
     <span v-for="key in Object.keys(defaultQuestions)" :key="key">
       <input type="checkbox" v-model="selected[key]" :key="key" :value="key" :checked="selected[key]" @click="selected[key] = !selected[key]"/>
-      {{ key }}
+      {{ splitCamelCase(key) }}
     </span>
     
   </div>
