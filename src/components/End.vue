@@ -37,7 +37,10 @@ watch(
 <style scoped>
 .end-buttons {
 	margin-top: 20px;
-	display: inline-flex;
+	display: flex;
+	@media (max-width: 600px) {
+		flex-direction: column;
+	}
 	place-items: center;
 	justify-content: center;
 	gap: 2rem;
