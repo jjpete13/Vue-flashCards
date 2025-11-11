@@ -4,10 +4,12 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import data from "../assets/questions.json";
 import type { Question } from "./CardView.vue";
+import { shuffleQuestions } from "@/utils/StudyContentUtils";
 
 type DefaultInput = { [key: string]: Question[] };
 const store = useStudyContentStore();
 const defaultQuestions: DefaultInput = data;
+const shouldShuffle = ref<boolean>(false);
 
 function splitCamelCase(text: string) {
 	return text
@@ -34,23 +36,36 @@ const onSubmit = () => {
 		const category: Question[] = defaultQuestions[key];
 		if (value) array.push(...category);
 	}
+  if (shouldShuffle.value) {
+    store.setQuestions(shuffleQuestions(array));
+    return;
+  }
 	store.setQuestions(array);
 };
+
+const onDeselectAll = () => {
+  selectAll(false);
+  shouldShuffle.value = false;
+}
+
 </script>
 
 <template>
   <div class="question-container">
     <h3>Select Categories</h3>
     <button id="select-all" v-if="Object.values(selected).includes(false)" @click="selectAll(true)" >Select All</button>
-    <button id="select-all" v-else @click="selectAll(false)" >Deselect All</button>
+    <button id="select-all" v-else @click="onDeselectAll" >Deselect All</button>
     <span v-for="key in Object.keys(defaultQuestions)" :key="key">
       <input type="checkbox" v-model="selected[key]" :key="key" :value="key" :checked="selected[key]" @click="selected[key] = !selected[key]"/>
       {{ splitCamelCase(key) }}
     </span>
     
   </div>
-  <div class="button-container">
-    <RouterLink class="button" v-if="Object.values(selected).filter(item => item === true).length > 0" @click="onSubmit"  to="/card">Start</RouterLink>
+  <div class="button-container" v-if="Object.values(selected).filter(item => item === true).length > 0">
+    <button type="button" @click="shouldShuffle = !shouldShuffle" id="shuffle" :style="shouldShuffle ? { backgroundColor: '#00bd7e' } : {}">
+      <img class="icon" src="../assets/shuffle.svg" alt="shuffle icon" />
+    </button>
+    <RouterLink class="button" @click="onSubmit"  to="/card">Start</RouterLink>
   </div>
 </template>
 
@@ -79,14 +94,35 @@ const onSubmit = () => {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
- height: 50px;
+  height: 50px;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+ #shuffle {
+  border-radius: 20px;
+  border: none;
+  width: 31px;
+  height: 31px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#shuffle:hover {
+  background-color: #00bd7e;
+}
+.icon {
+  width: 30px;
+  height: 30px;
 }
 .button {
   display: inherit;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: none;
   cursor: pointer;

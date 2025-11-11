@@ -9,9 +9,11 @@ const emit = defineEmits(["flip"]);
     <div class="content">
       <h1><slot></slot></h1>
     </div>
-    <button class="flip" id="flip-button" @mousedown="emit('flip')">
-      <ArrowRepeat />
-    </button>
+    <div class="flipper">  
+      <button class="flip" id="flip-button" @mousedown="emit('flip')">
+        <ArrowRepeat />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -52,10 +54,13 @@ const emit = defineEmits(["flip"]);
     min-height: 300px;
     height: fit-content;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1rem 0 0 1rem;
     background-color: #fff;
     color: #000;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .card:has(.flip:focus) {
       animation: flip 0.75s;
@@ -68,13 +73,19 @@ const emit = defineEmits(["flip"]);
     width: 100%;
     height: 100%;
     text-align: center;
+    padding-right: 1rem;
+  }
+
+  .flipper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px 10px 0;
   }
 
   .flip {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     display: flex;
