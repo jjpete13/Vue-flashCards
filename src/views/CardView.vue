@@ -44,7 +44,11 @@ const percentCorrect = () => {
 const handleIncorrect = () => {
 	incorrect.value.push(passedContent.value);
 	if (index === content.value.length - 1) isFinished.value = true;
-	index = index === content.value.length - 1 ? index : index + 1;
+		if (content.value.length === 1) {
+		index = 1
+	} else {
+		index = index === content.value.length - 1 ? index : index + 1;
+	}
 	passedContent.value = content.value[index];
 	shownContent.value = content.value[index].question;
 	isFlipped.value = false;
@@ -54,7 +58,11 @@ const handleIncorrect = () => {
 const handleCorrect = () => {
 	correctAmount.value++;
 	if (index === content.value.length - 1) isFinished.value = true;
-	index = index === content.value.length - 1 ? index : index + 1;
+	if (content.value.length === 1) {
+		index = 1
+	} else {
+		index = index === content.value.length - 1 ? index : index + 1;
+	}
 	passedContent.value = content.value[index];
 	shownContent.value = content.value[index].question;
 	isFlipped.value = false;
