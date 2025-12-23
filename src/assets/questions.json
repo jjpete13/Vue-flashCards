@@ -13,10 +13,6 @@
 			"answer": "An object is an instance of a class. It has its own set of attributes (data) and methods (functions). A class is a blueprint for creating objects."
 		},
 		{
-			"question": "What is the difference between an instance and an object?",
-			"answer": "An instance is an object that is created from a class. The terms are often used interchangeably, but an instance is a specific object, while an object can refer to any instance of a class."
-		},
-		{
 			"question": "What are the advantages of OOP over procedural programming?",
 			"answer": "OOP has several advantages over procedural programming, including code reusability, easier maintenance, and the ability to model real-world objects and systems."
 		},
@@ -183,10 +179,6 @@
 			"answer": "A sealed class is a class that cannot be inherited from."
 		},
 		{
-			"question": "Can a sealed class be inherited?",
-			"answer": "No, a sealed class cannot be inherited."
-		},
-		{
 			"question": "Can a sealed class have methods?",
 			"answer": "Yes, a sealed class can have methods."
 		},
@@ -197,10 +189,6 @@
 		{
 			"question": "What is the purpose of sealing a method in C#?",
 			"answer": "The purpose of sealing a method is to prevent it from being overridden in a subclass."
-		},
-		{
-			"question": "When should we use a sealed class?",
-			"answer": "A sealed class should be used when we want to prevent a class from being inherited."
 		},
 		{
 			"question": "What is a static class in C#?",
@@ -443,16 +431,12 @@
 			"answer": "The rest operator is also represented by ... and is used in function parameters to collect all remaining arguments into an array."
 		},
 		{
-			"question": "What are DRY, KISS, YAGNI, SOLID Principles?",
-			"answer": "DRY (Don't Repeat Yourself) is a principle of software development aimed at reducing repetition of information. KISS (Keep It Simple, Stupid) suggests that systems work best if they are kept simple rather than made complex. YAGNI (You Aren't Gonna Need It) means you should not add functionality until it is necessary. SOLID is a set of design principles for object-oriented programming: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion."
+			"question": "What are DRY, KISS, and YAGNI Principles?",
+			"answer": "DRY (Don't Repeat Yourself) is a principle of software development aimed at reducing repetition of information. KISS (Keep It Simple, Stupid) suggests that systems work best if they are kept simple rather than made complex. YAGNI (You Aren't Gonna Need It) means you should not add functionality until it is necessary."
 		},
 		{
 			"question": "What is temporal dead zone?",
 			"answer": "The temporal dead zone is a behavior in JavaScript where variables declared with let and const cannot be accessed before they are initialized."
-		},
-		{
-			"question": "Different ways to create object in javascript?",
-			"answer": "Objects can be created using object literals, the new Object() syntax, Object.create(), and ES6 classes."
 		},
 		{
 			"question": "Whats the difference between Object.keys, values and entries?",
@@ -461,22 +445,6 @@
 		{
 			"question": "Whats the difference between Object.freeze() vs Object.seal()",
 			"answer": "Object.freeze() makes an object immutable, preventing new properties from being added or existing properties from being removed or changed. Object.seal() prevents new properties from being added and marks all existing properties as non-configurable, but allows the modification of existing property values."
-		},
-		{
-			"question": "What is generator function in javascript?",
-			"answer": "A generator function is a function that can be paused and resumed, and it returns an iterator object."
-		},
-		{
-			"question": "What is prototype in javascript?",
-			"answer": "Prototype is a mechanism by which JavaScript objects inherit features from one another."
-		},
-		{
-			"question": "What is IIFE?",
-			"answer": "IIFE (Immediately Invoked Function Expression) is a function that runs immediately after it is defined."
-		},
-		{
-			"question": "What is CORS?",
-			"answer": "CORS (Cross-Origin Resource Sharing) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served."
 		},
 		{
 			"question": "What are the different datatypes in javascript?",
@@ -521,10 +489,6 @@
 		{
 			"question": "What is a callstack in javascript?",
 			"answer": "The call stack is a data structure that keeps track of function calls in a program, managing the order in which functions are executed."
-		},
-		{
-			"question": "What is a closure?",
-			"answer": "A closure is a feature where an inner function has access to the outer (enclosing) function's variables."
 		},
 		{
 			"question": "What are callbacks in javascript?",
@@ -591,10 +555,6 @@
 			"answer": "Event bubbling is a method of event propagation in the DOM where the event starts from the deepest target element and bubbles up to the ancestors."
 		},
 		{
-			"question": "What is event capturing?",
-			"answer": "Event capturing is a method where the event starts from the ancestor elements and propagates down to the target element."
-		},
-		{
 			"question": "What are cookies?",
 			"answer": "Cookies are small pieces of data stored by a web browser that are sent to the server with each request."
 		},
@@ -605,10 +565,6 @@
 		{
 			"question": "What is 'this' in javascript and How it behaves in various scenarios?",
 			"answer": "'this' refers to the object from which it was called. Its value depends on the context in which it is used (global, function, method, event handler, etc.)."
-		},
-		{
-			"question": "How do you optimize the performance of application",
-			"answer": "Optimizing application performance can involve techniques like code splitting, lazy loading, caching, reducing render times, minimizing DOM manipulation, and optimizing assets."
 		},
 		{
 			"question": "What is meant by debouncing and throttling",
