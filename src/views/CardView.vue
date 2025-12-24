@@ -29,9 +29,9 @@ const isFinished = ref(false);
 const handleFlip = () => {
 	document.getElementById("flip-button")?.blur();
 	setTimeout(() => {
-		!isFlipped.value
-			? (shownContent.value = passedContent.value.answer)
-			: (shownContent.value = passedContent.value.question);
+		shownContent.value = isFlipped.value
+			? passedContent.value.question
+			: passedContent.value.answer;
 		isFlipped.value = !isFlipped.value;
 	}, 375);
 };
@@ -44,8 +44,8 @@ const percentCorrect = () => {
 const handleIncorrect = () => {
 	incorrect.value.push(passedContent.value);
 	if (index === content.value.length - 1) isFinished.value = true;
-		if (content.value.length === 1) {
-		index = 1
+	if (content.value.length === 1) {
+		index = 1;
 	} else {
 		index = index === content.value.length - 1 ? index : index + 1;
 	}
@@ -59,7 +59,7 @@ const handleCorrect = () => {
 	correctAmount.value++;
 	if (index === content.value.length - 1) isFinished.value = true;
 	if (content.value.length === 1) {
-		index = 1
+		index = 1;
 	} else {
 		index = index === content.value.length - 1 ? index : index + 1;
 	}

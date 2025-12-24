@@ -36,18 +36,17 @@ const onSubmit = () => {
 		const category: Question[] = defaultQuestions[key];
 		if (value) array.push(...category);
 	}
-  if (shouldShuffle.value) {
-    store.setQuestions(shuffleQuestions(array));
-    return;
-  }
+	if (shouldShuffle.value) {
+		store.setQuestions(shuffleQuestions(array));
+		return;
+	}
 	store.setQuestions(array);
 };
 
 const onDeselectAll = () => {
-  selectAll(false);
-  shouldShuffle.value = false;
-}
-
+	selectAll(false);
+	shouldShuffle.value = false;
+};
 </script>
 
 <template>
