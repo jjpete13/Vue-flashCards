@@ -102,7 +102,7 @@ const handleStudyIncorrect = () => {
     <h2>Question: {{index + 1}} / {{content.length}}</h2>
     <h2>{{correctAmount}} / {{correctAmount + incorrect.length}} ({{ percent }}%) Correct</h2>
       <FlashCard  @flip="handleFlip">{{shownContent}}</FlashCard>
-      <CorrectIncorrect v-if="isFlipped" @incorrect="handleIncorrect" @correct="handleCorrect" />
+      <CorrectIncorrect v-show="isFlipped" @incorrect="handleIncorrect" @correct="handleCorrect" />
   </main>
 </template>
 

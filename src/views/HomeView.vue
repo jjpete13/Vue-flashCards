@@ -60,7 +60,7 @@ const onDeselectAll = () => {
     </span>
     
   </div>
-  <div class="button-container" v-if="Object.values(selected).filter(item => item === true).length > 0">
+  <div class="button-container" v-show="Object.values(selected).filter(item => item === true).length > 0">
     <button type="button" @click="shouldShuffle = !shouldShuffle" id="shuffle" :style="shouldShuffle ? { backgroundColor: '#00bd7e' } : {}">
       <img class="icon" src="../assets/shuffle.svg" alt="shuffle icon" />
     </button>
@@ -114,8 +114,8 @@ const onDeselectAll = () => {
   background-color: #00bd7e;
 }
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 .button {
   display: inherit;

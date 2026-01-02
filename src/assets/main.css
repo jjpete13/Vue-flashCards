@@ -12,32 +12,65 @@
 	justify-content: start;
 }
 
-a,
-.green {
-	background: transparent;
-	text-decoration: none;
-	color: #00bd7e;
-	transition: 0.4s;
-	padding: 3px;
-	font-size: 15px;
-}
-.red {
-	background: transparent;
-	text-decoration: none;
-	color: rgb(181, 47, 47);
-	transition: 0.4s;
-	padding: 3px;
-	font-size: 15px;
+@media (prefers-color-scheme: light) {
+	a,
+	.green {
+		background: #00bd7e;
+		text-decoration: none;
+		color: #000;
+		transition: 0.4s;
+		padding: 3px;
+		font-size: 15px;
+	}
+	.red {
+		background: rgb(181, 47, 47);
+		text-decoration: none;
+		color: #000;
+		transition: 0.4s;
+		padding: 3px;
+		font-size: 15px;
+	}
+	
+	.red:hover {
+		color: #fff;
+	}
+	
+	@media (hover: hover) {
+		a:hover,
+		.green:hover {
+			color: #fff;
+		}
+	}
 }
 
-.red:hover {
-	background-color: rgb(181, 47, 47, 0.2);
-}
-
-@media (hover: hover) {
-	a:hover,
-	.green:hover {
-		background-color: hsla(160, 100%, 37%, 0.2);
+@media (prefers-color-scheme: dark) {
+	a,
+	.green {
+		background: transparent;
+		text-decoration: none;
+		color: #00bd7e;
+		transition: 0.4s;
+		padding: 3px;
+		font-size: 15px;
+	}
+	.red {
+		background: transparent;
+		text-decoration: none;
+		color: rgb(181, 47, 47);
+		transition: 0.4s;
+		padding: 3px;
+		font-size: 15px;
+	}
+	
+	.red:hover {
+		background-color: rgb(181, 47, 47, 0.2);
+	}
+	
+	@media (hover: hover) {
+		a:hover,
+		.green:hover {
+			background-color: hsla(160, 100%, 37%, 0.2);
+		}
 	}
 }
 
