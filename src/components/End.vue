@@ -14,7 +14,7 @@ const props = defineProps({
 		required: true,
 	},
 });
-const emits = defineEmits(["restart", "studyIncorrect"]);
+const emit = defineEmits(["restart", "studyIncorrect"]);
 const correctAmount = ref(props.correctAmount);
 watch(
 	() => props.correctAmount,
@@ -27,8 +27,8 @@ watch(
 <template>
 		<h2>{{correctAmount}}({{ percent }}%) Correct</h2>
 		<div class="end-buttons">
-			<button class="green" v-if="incorrectAmount > 0" @click="emits('studyIncorrect')">Study Incorrect</button>
-			<button class="green" @click="emits('restart')">Restart</button>
+			<button class="green" v-if="incorrectAmount > 0" @click="emit('studyIncorrect')">Study Incorrect</button>
+			<button class="green" @click="emit('restart')">Restart</button>
 			<RouterLink class="button" to="/">Select Categories</RouterLink>
 		</div>
 </template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useStudyContentStore } from "@/stores/studyContent";
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
 import data from "../assets/questions.json";
 import type { Question } from "./CardView.vue";
 import { shuffleQuestions } from "@/utils/StudyContentUtils";
+import HomeFormSubmit from "@/components/HomeFormSubmit.vue";
 
 type DefaultInput = { [key: string]: Question[] };
 const store = useStudyContentStore();
@@ -24,9 +24,11 @@ const options = () => {
 	return defaults;
 };
 const selected = ref<{ [key: string]: boolean }>(options());
+const showSelectAll = ref(true);
 const selectAll = (select: boolean) => {
 	const qArray = Object.keys(selected.value);
 	if (!select) return qArray.forEach((item) => (selected.value[item] = false));
+  showSelectAll.value = false;
 	return qArray.forEach((item) => (selected.value[item] = true));
 };
 
@@ -46,26 +48,22 @@ const onSubmit = () => {
 const onClear = () => {
 	selectAll(false);
 	shouldShuffle.value = false;
+  showSelectAll.value = true;
 };
 </script>
 
 <template>
   <div class="question-container">
-    <h3>Select Categories</h3>
-    <button id="select-all" v-if="Object.values(selected).includes(false)" @click="selectAll(true)" >Select All</button>
-    <button id="select-all" v-else @click="onClear" >Clear</button>
+    <h3 id="title">Select Categories</h3>
+    <button id="select-all" v-show="showSelectAll" @click="selectAll(true)" >Select All</button>
+    <button id="select-all" v-show="!showSelectAll" @click="onClear" >Clear</button>
     <span v-for="key in Object.keys(defaultQuestions)" :key="key">
       <input type="checkbox" v-model="selected[key]" :key="key" :value="key" :checked="selected[key]" @click="selected[key] = !selected[key]"/>
       {{ splitCamelCase(key) }}
     </span>
     
   </div>
-  <div class="button-container" v-show="Object.values(selected).filter(item => item === true).length > 0">
-    <button type="button" @click="shouldShuffle = !shouldShuffle" id="shuffle" :style="shouldShuffle ? { backgroundColor: '#00bd7e' } : {}">
-      <img class="icon" src="../assets/shuffle.svg" alt="shuffle icon" />
-    </button>
-    <RouterLink class="button" @click="onSubmit"  to="/card">Start</RouterLink>
-  </div>
+  <HomeFormSubmit :hasSelected="Object.values(selected).filter(item => item === true).length > 0" :shouldShuffle="shouldShuffle" @shuffle="shouldShuffle = !shouldShuffle" @submit="onSubmit" />
 </template>
 
 <style scoped>
@@ -77,6 +75,9 @@ const onClear = () => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  #title {
+    text-align: center;
+  }
 }
 #select-all {
   border-radius: 5px;
@@ -89,42 +90,4 @@ const onClear = () => {
 #select-all:hover {
   background-color: #b3b1b1;
 }
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  height: 50px;
-  align-items: center;
-  flex-direction: row;
-  gap: 1rem;
-}
- #shuffle {
-  border-radius: 20px;
-  border: none;
-  width: 31px;
-  height: 31px;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#shuffle:hover {
-  background-color: #00bd7e;
-}
-.icon {
-  width: 40px;
-  height: 40px;
-}
-.button {
-  display: inherit;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
- }
 </style>

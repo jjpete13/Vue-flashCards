@@ -1,12 +1,7 @@
-<script setup lang="ts">
-const props = defineProps({});
-const emit = defineEmits(["correct", "incorrect"]);
-</script>
-
 <template >
   <div class="correct-incorrect-container">
-   <button class="red" type="button" @click="emit('incorrect')">Incorrect</button>
-  <button class="green" type="button" @click="emit('correct')">Correct</button> 
+   <button class="red" type="button" @click="$emit('incorrect')">Incorrect</button>
+  <button class="green" type="button" @click="$emit('correct')">Correct</button> 
   </div>
   
 </template>

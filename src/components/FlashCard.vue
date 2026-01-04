@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ArrowRepeat from "./icons/ArrowRepeat.vue";
-const emit = defineEmits(["flip"]);
 </script>
 
 
@@ -10,7 +9,7 @@ const emit = defineEmits(["flip"]);
       <h1><slot></slot></h1>
     </div>
     <div class="flipper">  
-      <button class="flip" id="flip-button" @mousedown="emit('flip')">
+      <button class="flip" id="flip-button" @mousedown="$emit('flip')">
         <ArrowRepeat />
       </button>
     </div>
@@ -92,7 +91,7 @@ const emit = defineEmits(["flip"]);
     place-items: center;
     padding: 5px;
     
-
+    
     :hover {
       transform: scale(1.2);
     }
