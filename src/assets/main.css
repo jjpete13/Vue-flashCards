@@ -30,11 +30,11 @@
 		padding: 3px;
 		font-size: 15px;
 	}
-	
+
 	.red:hover {
 		color: #fff;
 	}
-	
+
 	@media (hover: hover) {
 		a:hover,
 		.green:hover {
@@ -61,11 +61,11 @@
 		padding: 3px;
 		font-size: 15px;
 	}
-	
+
 	.red:hover {
 		background-color: rgb(181, 47, 47, 0.2);
 	}
-	
+
 	@media (hover: hover) {
 		a:hover,
 		.green:hover {

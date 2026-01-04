@@ -43,7 +43,7 @@ const onSubmit = () => {
 	store.setQuestions(array);
 };
 
-const onDeselectAll = () => {
+const onClear = () => {
 	selectAll(false);
 	shouldShuffle.value = false;
 };
@@ -53,7 +53,7 @@ const onDeselectAll = () => {
   <div class="question-container">
     <h3>Select Categories</h3>
     <button id="select-all" v-if="Object.values(selected).includes(false)" @click="selectAll(true)" >Select All</button>
-    <button id="select-all" v-else @click="onDeselectAll" >Deselect All</button>
+    <button id="select-all" v-else @click="onClear" >Clear</button>
     <span v-for="key in Object.keys(defaultQuestions)" :key="key">
       <input type="checkbox" v-model="selected[key]" :key="key" :value="key" :checked="selected[key]" @click="selected[key] = !selected[key]"/>
       {{ splitCamelCase(key) }}
