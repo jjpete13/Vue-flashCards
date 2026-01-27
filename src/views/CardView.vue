@@ -3,7 +3,8 @@ import CorrectIncorrect from "@/components/CorrectIncorrect.vue";
 import End from "@/components/End.vue";
 import FlashCard from "@/components/FlashCard.vue";
 import { useStudyContentStore } from "@/stores/studyContent";
-import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 export interface Question {
 	question: string;
@@ -11,16 +12,10 @@ export interface Question {
 }
 
 const store = useStudyContentStore();
-const content = ref<Question[]>(store.questions || []);
-watch(
-	() => store.questions,
-	(newQuestions) => {
-		content.value = newQuestions;
-	},
-);
+const { questions } = storeToRefs(store);
 let index = 0;
-const passedContent = ref(content.value[index]);
-const shownContent = ref(content.value[index].question);
+const passedContent = ref(questions.value[index]);
+const shownContent = ref(questions.value[index].question);
 const isFlipped = ref(shownContent.value === passedContent.value.answer);
 const incorrect = ref<Question[]>([]);
 const correctAmount = ref(0);
@@ -43,37 +38,37 @@ const percentCorrect = () => {
 
 const handleIncorrect = () => {
 	incorrect.value.push(passedContent.value);
-	if (index === content.value.length - 1) isFinished.value = true;
-	if (content.value.length === 1) {
+	if (index === questions.value.length - 1) isFinished.value = true;
+	if (questions.value.length === 1) {
 		index = 1;
 	} else {
-		index = index === content.value.length - 1 ? index : index + 1;
+		index = index === questions.value.length - 1 ? index : index + 1;
 	}
-	passedContent.value = content.value[index];
-	shownContent.value = content.value[index].question;
+	passedContent.value = questions.value[index];
+	shownContent.value = questions.value[index].question;
 	isFlipped.value = false;
 	percent.value = percentCorrect();
 };
 
 const handleCorrect = () => {
 	correctAmount.value++;
-	if (index === content.value.length - 1) isFinished.value = true;
-	if (content.value.length === 1) {
+	if (index === questions.value.length - 1) isFinished.value = true;
+	if (questions.value.length === 1) {
 		index = 1;
 	} else {
-		index = index === content.value.length - 1 ? index : index + 1;
+		index = index === questions.value.length - 1 ? index : index + 1;
 	}
-	passedContent.value = content.value[index];
-	shownContent.value = content.value[index].question;
+	passedContent.value = questions.value[index];
+	shownContent.value = questions.value[index].question;
 	isFlipped.value = false;
 	percent.value = percentCorrect();
 };
 
 const handleRestart = () => {
 	index = 0;
-	content.value = store.questions;
-	passedContent.value = content.value[index];
-	shownContent.value = content.value[index].question;
+	questions.value = store.questions;
+	passedContent.value = questions.value[index];
+	shownContent.value = questions.value[index].question;
 	isFlipped.value = false;
 	incorrect.value = [];
 	correctAmount.value = 0;
@@ -83,9 +78,9 @@ const handleRestart = () => {
 
 const handleStudyIncorrect = () => {
 	index = 0;
-	content.value = incorrect.value;
-	passedContent.value = content.value[index];
-	shownContent.value = content.value[index].question;
+	questions.value = incorrect.value;
+	passedContent.value = questions.value[index];
+	shownContent.value = questions.value[index].question;
 	isFlipped.value = false;
 	incorrect.value = [];
 	correctAmount.value = 0;
@@ -99,7 +94,7 @@ const handleStudyIncorrect = () => {
 		<End :correctAmount="`${correctAmount} / ${correctAmount + incorrect.length}`" :percent="percent" :incorrectAmount="incorrect.length" @restart="handleRestart" @studyIncorrect="handleStudyIncorrect" />
 	</main>
   <main v-else class="card-group">
-    <h2>Question: {{index + 1}} / {{content.length}}</h2>
+    <h2>Question: {{index + 1}} / {{questions.length}}</h2>
     <h2>{{correctAmount}} / {{correctAmount + incorrect.length}} ({{ percent }}%) Correct</h2>
       <FlashCard  @flip="handleFlip">{{shownContent}}</FlashCard>
       <CorrectIncorrect v-show="isFlipped" @incorrect="handleIncorrect" @correct="handleCorrect" />
