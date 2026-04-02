@@ -1,13 +1,16 @@
 {
-	"linter": {
-		"rules": {
-			"suspicious": {
-				"noAssignInExpressions": "warn"
-			},
-			"complexity": {
-				"noForEach": "warn"
-			}
-		},
-		"ignore": ["dist/**/*", "node_modules/**/*", "docs/**/*"]
-	}
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noAssignInExpressions": "warn"
+      },
+      "complexity": {
+        "noForEach": "warn"
+      }
+    },
+    "ignore": ["dist/**/*", "node_modules/**/*", "docs/**/*"]
+  },
+  "formatter": {
+    "ignore": ["dist/**/*", "node_modules/**/*", "docs/**/*"]
+  }
 }

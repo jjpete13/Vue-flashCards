@@ -9,16 +9,20 @@ defineProps({
     type: Boolean,
     required: true,
   },
-})
-
+});
 </script>
 
 <template>
   <div class="button-container" v-show="hasSelected">
-    <button type="button" @click="$emit('shuffle')" id="shuffle" :style="shouldShuffle ? { backgroundColor: '#00bd7e' } : {}">
-      <img class="icon" src="../assets/shuffle.svg" alt="shuffle icon" />
+    <button
+      type="button"
+      @click="$emit('shuffle')"
+      id="shuffle"
+      :style="shouldShuffle ? { backgroundColor: '#00bd7e' } : {}"
+    >
+      <img class="icon" src="../assets/icons/shuffle.svg" alt="shuffle icon" />
     </button>
-    <RouterLink class="button" @click="$emit('submit')"  :to="{name: 'card'}">Start</RouterLink>
+    <RouterLink class="button" @click="$emit('submit')" :to="{ name: 'card' }">Start</RouterLink>
   </div>
 </template>
 
@@ -32,7 +36,7 @@ defineProps({
   flex-direction: row;
   gap: 1rem;
 }
- #shuffle {
+#shuffle {
   border-radius: 20px;
   border: none;
   width: 31px;
@@ -60,5 +64,5 @@ defineProps({
   border: none;
   cursor: pointer;
   font-size: 20px;
- }
+}
 </style>
